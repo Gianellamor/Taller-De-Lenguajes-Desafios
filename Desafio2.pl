@@ -4,13 +4,24 @@ import math
 
 def calculadora():
     numero = int(input('Número: '))
-    funcion = input('Función (sin, cos, tan, exp, log): ')
-    for i in range(1, numero + 1):
-        print(f'{i} = {eval('math.' + funcion + '(' + str(i) + ')')})')
+    funcion = input('Función (sin, cos, tan, exp, log): ').strip().lower()
+    
+    # Mapeo seguro de nombres a funciones de la librería math
+    operaciones = {
+        'sin': math.sin,
+        'cos': math.cos,
+        'tan': math.tan,
+        'exp': math.exp,
+        'log': math.log
+    }
+    
+    if funcion in operaciones:
+        print(f"\nTabla de {funcion.upper()} del 1 al {numero}:")
+        print("-" * 25)
+        for i in range(1, numero + 1):
+            resultado = operaciones[funcion](i)
+            print(f"{i:<4} = {resultado:.6f}")
+    else:
+        print("Función no válida. Elegí entre: sin, cos, tan, exp, log")
 
 calculadora()
-1 = 0.8414709848078965)
-2 = 0.9092974268256817)
-3 = 0.1411200080598672)
-4 = -0.7568024953079282)
-5 = -0.9589242746631385)
